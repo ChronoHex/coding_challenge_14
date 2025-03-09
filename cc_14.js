@@ -24,12 +24,23 @@ function addTicket(customerName, issueDescription, priorityLevel) {
     resolveButton.textContent = 'Resolve';
     resolveButton.setAttribute('class', 'resolve-button');
 
+    // task 4
+    resolveButton.addEventListener('click', function(event) {
+        ticketContainer.removeChild(ticket); // removing ticket fron container
+        event.stopPropagation();
+    })
+
     // section for appending elements to ticket
     ticket.appendChild(nameHeading);
     ticket.appendChild(issueText);
     ticket.appendChild(priorityState);
     ticket.appendChild(resolveButton);
     ticketContainer.appendChild(ticket); // appending ticket to container
+
+    // attaching an event listener to ticketContainer
+    ticketContainer.addEventListener('click', function() {
+        console.log('A ticket was clicked')
+    })
 }
 
 // Task 3 
