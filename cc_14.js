@@ -46,7 +46,7 @@ function addTicket(customerName, issueDescription, priorityLevel) {
 
         const issueInput = document.createElement('input');
         issueInput.setAttribute('type', 'text');
-        issueInput.value = issueInput.textContent;
+        issueInput.value = issueText.textContent;
 
         const priorityInput = document.createElement('input');
         priorityInput.setAttribute('type', 'text');
