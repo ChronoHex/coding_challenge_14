@@ -26,7 +26,7 @@ function addTicket(customerName, issueDescription, priorityLevel) {
 
     // task 4
     resolveButton.addEventListener('click', function(event) {
-        ticketContainer.removeChild(ticket); // removing ticket fron container
+        ticketContainer.removeChild(ticket); // removing ticket from container
         event.stopPropagation();
     })
 
@@ -37,10 +37,50 @@ function addTicket(customerName, issueDescription, priorityLevel) {
     ticket.appendChild(resolveButton);
     ticketContainer.appendChild(ticket); // appending ticket to container
 
-    // attaching an event listener to ticketContainer
-    ticketContainer.addEventListener('click', function() {
-        console.log('A ticket was clicked')
-    })
+    
+    // task 5
+    ticket.addEventListener('dblclick', function() {
+        const nameInput = document.createElement('input');
+        nameInput.setAttribute('type', 'text');
+        nameInput.value = nameHeading.textContent;
+
+        const issueInput = document.createElement('input');
+        issueInput.setAttribute('type', 'text');
+        issueInput.value = issueInput.textContent;
+
+        const priorityInput = document.createElement('input');
+        priorityInput.setAttribute('type', 'text');
+        priorityInput.value = priorityState.textContent.split(": ")[1]; // trying to get current priority
+
+        // making save button
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+
+        // clearing current content
+        ticket.innerHTML = '';
+
+        // appending again just in case
+        ticket.appendChild(nameInput);
+        ticket.appendChild(issueInput);
+        ticket.appendChild(priorityInput);
+        ticket.appendChild(saveButton);
+
+        // save button listener
+        saveButton.addEventListener('click', function() {
+            // updating new values
+            nameHeading.textContent = nameInput.value;
+            issueText.textContent = issueInput.value;
+            priorityState.textContent = `Priority: ${priorityInput.value}`;
+            priorityState.setAttribute('class', priorityInput.value.toLowerCase());
+
+            // reverting back fields to static text
+            ticket.innerHTML = '';
+            ticket.appendChild(nameHeading);
+            ticket.appendChild(issueText);
+            ticket.appendChild(priorityState);
+            ticket.appendChild(resolveButton);
+        });
+    });
 }
 
 // Task 3 
@@ -50,15 +90,20 @@ function highlightHighPriorityTickets() {
     const highPriorityArray = Array.from(highlightHighPriorityTickets);
 
     highPriorityArray.forEach(ticket => {
-        ticket.computedStyleMap.backgroundColor = 'lightblue' // setting a highlight color
-        ticket.style.border = '2px green'; // added a border
+        ticket.style.backgroundColor = 'lightblue'; // setting a highlight color
+        ticket.style.border = '2px solid green'; // added a border
     });
 }
 
 highlightHighPriorityTickets()
 
-// examples
+// attaching an event listener to ticketContainer
+const ticketContainer = document.getElementById('ticketContainer');
+ticketContainer.addEventListener('click', function() {
+    console.log('A ticket was clicked')
+});
+
+// examples;
+
 addTicket('Victor Handson', 'Cannot delete account', 'High');
 addTicket('Gerald Jackson', 'Page not showing', 'Low');
-
-
