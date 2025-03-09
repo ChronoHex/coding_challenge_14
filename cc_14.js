@@ -22,7 +22,7 @@ function addTicket(customerName, issueDescription, priorityLevel) {
     // making a button to resolve ticket issue
     const resolveButton = document.createElement('button');
     resolveButton.textContent = 'Resolve';
-    resolveButton.setAttributeNS('class', 'resolve-button');
+    resolveButton.setAttribute('class', 'resolve-button');
 
     // section for appending elements to ticket
     ticket.appendChild(nameHeading);
