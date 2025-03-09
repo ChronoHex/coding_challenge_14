@@ -32,6 +32,20 @@ function addTicket(customerName, issueDescription, priorityLevel) {
     ticketContainer.appendChild(ticket); // appending ticket to container
 }
 
+// Task 3 
+// making a function to highlight tickets
+function highlightHighPriorityTickets() {
+    const highlightHighPriorityTickets = document.querySelectorAll('.high');
+    const highPriorityArray = Array.from(highlightHighPriorityTickets);
+
+    highPriorityArray.forEach(ticket => {
+        ticket.computedStyleMap.backgroundColor = 'lightblue' // setting a highlight color
+        ticket.style.border = '2px green'; // added a border
+    });
+}
+
+highlightHighPriorityTickets()
+
 // examples
 addTicket('Victor Handson', 'Cannot delete account', 'High');
 addTicket('Gerald Jackson', 'Page not showing', 'Low');
