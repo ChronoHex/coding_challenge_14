@@ -24,10 +24,29 @@ function addTicket(customerName, issueDescription, priorityLevel) {
     resolveButton.textContent = 'Resolve';
     resolveButton.setAttribute('class', 'resolve-button');
 
+    // edit button
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit Ticket';
+    editButton.setAttribute('class', 'edit-button')
+
     // task 4
     resolveButton.addEventListener('click', function(event) {
         ticketContainer.removeChild(ticket); // removing ticket from container
         event.stopPropagation();
+    })
+
+    editButton.addEventListener('click', function(event) {
+        const nameInput = document.createElement('input');
+        nameInput.setAttribute('type', 'text');
+        nameInput.value = nameHeading.textContent;
+
+        const issueInput = document.createElement('input');
+        issueInput.setAttribute('type', 'text');
+        issueInput.value = issueText.textContent;
+
+        const priorityInput = document.createElement('input');
+        priorityInput.setAttribute('type', 'text');
+        priorityInput.value = priorityState.textContent.split(": ")[1]
     })
 
     // section for appending elements to ticket
@@ -35,6 +54,7 @@ function addTicket(customerName, issueDescription, priorityLevel) {
     ticket.appendChild(issueText);
     ticket.appendChild(priorityState);
     ticket.appendChild(resolveButton);
+    ticket.appendChild(editButton);
     ticketContainer.appendChild(ticket); // appending ticket to container
 
     
@@ -79,6 +99,7 @@ function addTicket(customerName, issueDescription, priorityLevel) {
             ticket.appendChild(issueText);
             ticket.appendChild(priorityState);
             ticket.appendChild(resolveButton);
+            tticket.appendChild(editButton);
         });
     });
 }
